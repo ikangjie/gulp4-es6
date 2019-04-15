@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue入门知识</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 挂载点、模板、实例之间的联系 -->
+    <!-- root元素就是vue挂载点 -->
+    <div id="root">
+        <!-- 在挂载点里边的内容称为模板 -->
+        <!-- <h1>hello {{msg}}</h1> -->
+    </div>
+    <script>
+        //让vue接管/绑定#root元素
+        new Vue({
+            el : '#root',//挂载点
+            template : '<h1>hello {{msg}}</h1>',
+            data : {
+                msg : "vue"
+            }
+        });
+    </script>
+</body>
+</html>

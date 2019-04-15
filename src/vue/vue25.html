@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue使用Velocity.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/velocity.js"></script>
+</head>
+<body>
+    <div id="root">
+        <transition
+         @before-enter="handleBeforeEnter"
+         @enter="handleEnter"
+         @after-enter="handleAfterEnter"
+        >
+            <div v-show="show">hello world</div>
+        </transition>
+        <button @click="handleClick">切换</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el : "#root",
+            data : {
+                show : true
+            },
+            methods : {
+                handleClick : function(){
+                    this.show = !this.show;
+                },
+                //vue提供的js钩子
+                //还没开始的时候
+                handleBeforeEnter : function(el){
+                    el.style.opacity = 0;
+                },
+                //开始
+                handleEnter : function(el,done){
+                    console.log('开始');
+                    Velocity(el,
+                      {opacity : 1},
+                      {
+                          duration : 1000,
+                          complete : done
+                      }
+                    );
+                },
+                //开始之后
+                handleAfterEnter : function(el){
+                   console.log('动画结束'); 
+                }
+                // //还没离开的时候
+                // handleLeaveEnter : function(el){
+                    
+                // },
+                // //离开完成
+                // handleLeave : function(el,done){
+                                       
+                // },
+                // //离开之后
+                // handleAfterLeaver : function(el){
+                    
+                // }
+            }
+        });
+    </script>    
+</body>
+</html>

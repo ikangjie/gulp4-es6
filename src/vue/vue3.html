@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue属性绑定和双向数据绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 属性绑定 此时的title里不再是字符串而是js表达式 -->
+        <div :title="title">hello world</div>
+        <!-- 双向数据绑定 -->
+        <input v-model="content"/>
+        <!-- 现在是单向绑定，单向绑定意思是数据决定页面显示，但是页面无法决定数据里的内容 -->
+        <div>{{content}}</div>
+    </div>
+    <script>
+            new Vue({
+                el : '#root',
+                data : {
+                    title : "this is hello world",
+                    content : "this is content"
+                }
+            });
+    </script>    
+</body>
+</html>

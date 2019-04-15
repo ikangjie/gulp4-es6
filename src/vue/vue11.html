@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的样式绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+       .activated{color: red;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- class对象绑定 -->
+        <!-- <div @click="handleDivClick"
+             :class="{activated: isActivated}"
+        >
+             hello world
+        </div> -->
+
+        <!-- class数组绑定 -->
+        <!-- <div @click="handleDivClick"
+             :class="[activated,act]"
+        >
+             hello world
+        </div> -->
+
+        <!-- 内联样式 -->
+        <div :style="[styleObj,{fontSize:'20px'}]"
+             @click="handleDivClick"
+        >
+             hello world
+        </div>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el : "#app",
+            //对象样式
+            // data : {
+            //     isActivated : false
+            // },
+            // methods : {
+            //     handleDivClick : function(){
+            //         this.isActivated = !this.isActivated;
+            //     }
+            // }
+            //数组变量
+            // data : {
+            //     activated : "",
+            //     act : "act"
+            // },
+            // methods : {
+            //     handleDivClick : function(){
+            //         this.activated = this.activated === "activated" ? "" : "activated";
+            //         // this.act = this.act === "act" ? "" : "act";
+            //     }                
+            // }
+            //内联样式
+            data : {
+                styleObj : {
+                    color : "black"
+                }
+            },
+            methods : {
+                handleDivClick : function(){
+                    this.styleObj.color = this.styleObj.color === "black" ? "red" : "black";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

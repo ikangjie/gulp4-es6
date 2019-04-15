@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-if,v-show与v-for指令</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- if-if 直接移除dom -->
+        <!-- <div v-if="show">hello world</div>
+        <div v-else>Bye world</div> -->
+
+        <!-- <div v-if="show === true">hello world</div>
+        <div v-else-if="show === 'a'">a world</div>
+        <div v-else>Bye world</div> -->
+
+        <!-- 当你给dom加上key的得时候vue会知道它是唯一的元素 -->
+        <div v-if="show === 'a'">
+            用户名：<input key="username" />
+        </div>
+        <div v-else-if="show === 'b'">
+            密码：<input key="pass" />
+        </div>
+
+        <!-- if-show直接操控dom属性 性能好 -->
+        <div v-show="show">hello world</div>
+        <button @click="handleClick">toggle</button>
+        <ul>
+            <!-- 循环list定义的数组 key表示每次循环不能相同的key值，需要创建index存储 -->
+            <li v-for="(item,index) of list" :key="index">{{item}}</li>
+        </ul>
+
+    </div>
+    <script>
+            var vm = new Vue({
+                el : '#root',
+                data : {
+                    show : true,
+                    list : ["hello",2,3]
+                },
+                methods : {
+                    handleClick : function(){
+                        this.show = !this.show;
+                    }
+                }
+            });
+    </script>    
+</body>
+</html>

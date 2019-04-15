@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实现todolist的删除功能/父子组件传值</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div>
+            <input v-model="inputValue"/>
+            <button @click="handleSubmit">提交</button>
+        </div>
+        <ul>
+            <todo-item v-for="(item , index) of list" :key="index" :content="item" :index="index" @delete="handleDelete"></todo-item>
+        </ul>
+    </div>
+    <script>
+
+            //vue每个组件都是一个vue实例
+            //vue组件化 以下是全局组件
+            Vue.component('todo-item',{
+                //props接受外部传递进来的参数
+                props : ['content','index'],
+                template : '<li @click="handleClick">{{content}} {{index}}</li>',
+                methods : {
+                    handleClick : function(){
+                        //向父组件发出通信要求删除父节点下面的子节点
+                        this.$emit('delete',this.index);
+                    }
+                }
+            });
+
+            new Vue({
+                el : '#root',
+                data : {
+                    inputValue : 'hello world',
+                    //父组件给子组件传值是通过属性传的
+                    list : []
+                },
+                methods : {
+                    handleSubmit : function(){
+                        if(this.inputValue!=''){
+                            this.list.push(this.inputValue);
+                            this.inputValue = '';
+                        }
+                    },
+                    handleDelete : function(index){
+                        this.list.splice(index,1);
+                    }
+                }
+            });
+    </script>
+</body>
+</html>

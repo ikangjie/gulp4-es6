@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue实例中的数据，事件和方法</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- {{}}插值表达式 -->
+        <h1>hello {{msg}} {{number}} </h1>
+        <!-- v-text v-html 是vue中的一个指令 h2标签的内容由number变量决定 -->
+        <h2 v-text="number"></h2>
+        <h2 v-text="content"></h2>
+        <div v-html="content"></div>
+        <!-- 事件指令 -->
+        <div v-on:click="handleClick">{{event}}</div>
+        <!-- 事件简写 -->
+        <div @click="handleClick">{{event}}</div>
+    </div>
+    <script>
+        new Vue({
+            el : '#root',
+            data : {
+                msg : "vue",
+                number : 123,
+                content : '<h1>v-html</h1>',
+                event : 'vue绑定事件'
+            },
+            methods : {
+                handleClick : function(){
+                    //alert(123);
+                    this.event = '绑定事件成功';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+@import "sprites";
+h1{
+    display: inline-block;
+    padding: 0 25px;
+    background: url(../images/icon-up.png) no-repeat left center,
+                url(../images/icon-down.png) no-repeat right center;
+}
+.cf {
+    *zoom: 1;
+    &:after {
+        content: "\200B";
+        height: 0px;
+        display: block;
+        clear: both;
+    }
+}
+.sprites{
+    height: 50px;
+    font-size: 0;
+    i{
+        display: inline-block;
+        &:first-child{
+            @include sprite($btn-share-wx);
+        }
+        &:first-child + i{
+            @include sprite($btn-share-qq);
+        }        
+    }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>在Vue中使用插槽</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- <child content="<p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p><p>Dell</p>"></child> -->
+
+        <!-- 插槽 -->
+        <!-- <child>
+            <h1>Hello</h1>
+            <p>Dell</p>
+        </child> -->
+
+        <child>
+            <!-- 具名插槽 slot -->
+            <div class="header" slot="header">header</div>
+            <div class="footer" slot="footer">footer</div>
+        </child>
+        
+    </div>
+    <script>
+        //全局组件
+        Vue.component('child',{
+            props : ['content'],
+            // template : `<div>
+            //                 <p>hello</p>
+            //                 <div v-html="this.content">/div>
+            //             </div>`
+            // template : `<div>
+            //                 <p>hello world</p>
+            //                 <slot>默认内容</slot>
+            //             </div>`
+            template : `<div>
+                            <slot name="header">默认值</slot>
+                            <p>hello world</p>
+                            <slot name="footer">默认值</slot>
+                        </div>`
+        });        
+        var vm = new Vue({
+            el : "#root"
+        });
+    </script>    
+</body>
+</html>

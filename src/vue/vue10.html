@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue生命周期函数</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        //生命周期函数就是vue实例在某一个时间点会自动执行的函数,生命周期函数不会放在methods里
+        var vm = new Vue({
+            el : "#app",
+            template : "<div>{{test}}</div>",
+            data : {
+                test : "hello world"
+            },
+            //vue实例部分初始化之后执行
+            beforeCreate () {
+                console.log('beforeCreate->vue实例部分初始化之后执行');
+            },
+            //vue处理外部的注册或者双向绑定的时候执行
+            created () {
+                console.log('created->vue处理外部的注册或者双向绑定的时候执行');
+            },
+            //模板和数据相结合即将挂载到页面之前执行
+            beforeMount () {
+                console.log('beforeMount->模板和数据相结合即将挂载到页面之前执行',this.$el);
+            },
+            //页面挂载之后执行
+            mounted () {
+                console.log('mounted->页面挂载之后执行',this.$el);
+            },
+            //实例还没有被销毁之前执行 vm.$destroy()
+            beforeDestroy () {
+                console.log('beforeDestroy->被销毁的时候执行');
+            },
+            //销毁完成执行
+            destroyed () {
+                console.log('destroyed->销毁完成执行');
+            },
+            //当数据被改变还没有渲染之前
+            beforeUpdate () {
+                console.log('beforeUpdate->当数据被改变还没有渲染之前');
+            },
+            //当数据被改变渲染之后
+            updated () {
+                console.log('updated->当数据被改变渲染之后');
+            }
+        });
+    </script>
+</body>
+</html>
